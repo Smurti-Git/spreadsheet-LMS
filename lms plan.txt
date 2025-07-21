@@ -1,0 +1,51 @@
+Key Features & Functionality
+1️⃣ User Authentication & Role Management
+
+Admin login credentials for user management.
+
+Role-based access:
+
+Admin: Full access (creating, editing, managing courses & users).
+
+Teacher: Can create, edit, assign courses, and evaluate students.
+
+Student: Can only view assigned courses and track progress.
+
+2️⃣ Course & Topic Creation
+
+A structured way to add multiple topics per course.
+
+Attachments: Text, video, documents, and links embedded.
+
+MCQ & Subjective Questions: For assessments & evaluations.
+
+Course ordering system ensuring structured progression.
+
+3️⃣ Dashboard & Course Navigation
+
+Left panel: Displays course contents (topics).
+
+Right panel (80% window): Displays selected topic.
+
+Course preview, edit, delete, and user assignment options.
+
+4️⃣ Student Enrollment & Course Assignment
+
+Admin/Teacher can assign users via email ID-based access.
+
+Students automatically gain course access once assigned.
+
+Sequential Unlocking: Courses must be completed in order.
+
+5️⃣ Tracking & Analytics
+
+A progress tracking page for student performance insights.
+
+Metrics: Time spent, completed topics, quiz scores.
+
+Admin can monitor engagement and adjust learning paths.
+
+Implementation Considerations
+🔹 Initially, Google Sheets can act as a database, with Google Apps Script handling automation. 🔹 As the LMS scales, Firebase or MySQL/PostgreSQL can replace Sheets for structured data management. 🔹 Google AppSheet is a no-code option if you want a simplified UI while still using Sheets. 🔹 Authentication can be done via Google Sign-In or Firebase Authentication for secure logins.
+
+This approach ensures flexibility while keeping things scalable. Would you like suggestions on the best tools and frameworks for implementation? I can also help draft a step-by-step plan for transitioning from Google Sheets to a DBMS!
