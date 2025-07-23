@@ -15,7 +15,7 @@
         <div class="nav-item" onclick="loadSidebar('course')">Course</div>
         <div class="nav-item" onclick="loadSidebar('topic')">Topic</div>
         <div class="nav-profile" onclick="toggleProfileModal()">
-            <img src="https://via.placeholder.com/30" alt="Profile" class="profile-pic" />
+            <img src="https://via.placeholder.com/30" alt="Profile" class="profile-pic" />  
         </div>
     </nav>
 
@@ -35,14 +35,14 @@
 
     <!-- Home Summary Section -->
     <div id="home-content" class="right-panel hidden">
-        <h2>Dashboard Summary</h2>
+        <h2 style="padding: 14px; margin-left: -23%;">Dashboard Summary</h2>
         <div id="user-summary"></div>
         <div id="score-summary"></div>
         <div id="time-summary"></div>
         <div id="incomplete-topics-summary"></div>
 
         <div id="completion-summary"></div>
-        <button onclick="downloadSummary()">Download Summary</button>
+        <button id="bt" onclick="downloadSummary()">Download Summary</button>
 
     </div>
 
@@ -57,7 +57,7 @@
                 <label>Department: <input type="text" id="profile-dept" /></label><br />
                 <label>Profile Picture URL: <input type="text" id="profile-picurl" /></label><br />
                 <button type="submit">Save</button>
-                <button type="button" onclick="toggleProfileModal()">Close</button>
+                <button id="bt" type="button" onclick="toggleProfileModal()">Close</button>
             </form>
         </div>
     </div>
