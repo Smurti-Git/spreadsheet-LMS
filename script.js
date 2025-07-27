@@ -116,21 +116,21 @@ function updateSessionTime() {
 // }
 
 
-// function toggleProfileModal() {
-//   const modal = document.getElementById("profile-modal");
-//   modal.classList.toggle("hidden");
-//   if (!modal.classList.contains("hidden")) loadProfile();
-// }
+function toggleProfileModal() {
+  const modal = document.getElementById("profile-modal");
+  modal.classList.toggle("hidden");
+  if (!modal.classList.contains("hidden")) loadProfile();
+}
 
-// function toggleLoginModal() {
-//   document.getElementById("login-modal").classList.toggle("hidden");
-// }
+function toggleLoginModal() {
+  document.getElementById("login-modal").classList.toggle("hidden");
+}
 
-// function logout() {
-//   localStorage.clear();
-//   alert("Logged out!");
-//   window.location.reload();
-// }
+function logout() {
+  localStorage.clear();
+  alert("Logged out!");
+  window.location.reload();
+}
 
 // ===================== HOME PAGE & BATCH HANDLING =====================
 
