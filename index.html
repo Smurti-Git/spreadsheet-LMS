@@ -1,69 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LMS Dashboard</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LMS Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    <!-- Top Navigation Bar -->
-    <nav class="navbar">
-        <h1 style="color: rgb(255, 230, 0);">LMS</h1>
-        <div class="nav-item" onclick="loadHomePage()">Home</div>
-        <div class="nav-item" onclick="loadSidebar('batch')">Batch</div>
-        <div class="nav-item" onclick="loadSidebar('course')">Course</div>
-        <div class="nav-item" onclick="loadSidebar('topic')">Topic</div>
-        <div class="nav-profile" onclick="toggleProfileModal()">
-            <img src="https://via.placeholder.com/30" alt="Profile" class="profile-pic" />  
-        </div>
-    </nav>
-
-    <!-- Main LMS View -->
-    <div id="main-dashboard" class="dashboard-container">
-        <aside class="sidebar">
-            <h2 id="sidebar-title">Batches</h2>
-            <ul id="sidebar-list"></ul>
-        </aside>
-
-        <aside class="right-panel">
-            <h2>Topics</h2>
-            <div id="topic-content"></div>
-           
-        </aside>
-    </div>
-
-    <!-- Home Summary Section -->
-    <div id="home-content" class="right-panel hidden">
-        <h2 style="padding: 14px; margin-left: -23%;">Dashboard Summary</h2>
-        <div id="user-summary"></div>
-        <div id="score-summary"></div>
-        <div id="time-summary"></div>
-        <div id="incomplete-topics-summary"></div>
-
-        <div id="completion-summary"></div>
-        <button id="bt" onclick="downloadSummary()">Download Summary</button>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <h1 style="color: rgb(255, 230, 0);">LMS</h1>
+    <div class="nav-item" onclick="loadHomePage()">Home</div>
+    <div class="nav-item" onclick="loadSidebar('batch')">Batch</div>
+    <div class="nav-item" onclick="loadSidebar('course')">Course</div>
+    <div class="nav-item" onclick="loadSidebar('topic')">Topic</div>
+    
+    <div class="nav-item" onclick="toggleLoginModal()">Login</div>
+    <div class="nav-profile" onclick="toggleProfileModal()">
+     <img src="https://du8ef2qvb6oy7.cloudfront.net/media/images/ef4a6b6b-aff5-4212-a2ff-d39068ad35d2/VyaparLogo2x.png?fm=jpg&q=80&fit=max&crop=1000%2C1000%2C0%2C0&w=1000" class="profile-pic">
 
     </div>
+  </nav>
 
-    <!-- Profile Modal -->
-    <div id="profile-modal" class="modal hidden">
-        <div class="modal-content">
-            <h3>User Profile</h3>
-            <form id="profile-form" onsubmit="saveProfile(); return false;">
-                <label>Name: <input type="text" id="profile-name" /></label><br />
-                <label>Employee ID: <input type="text" id="profile-empid" /></label><br />
-                <label>Email: <input type="email" id="profile-email" /></label><br />
-                <label>Department: <input type="text" id="profile-dept" /></label><br />
-                <label>Profile Picture URL: <input type="text" id="profile-picurl" /></label><br />
-                <button type="submit">Save</button>
-                <button id="bt" type="button" onclick="toggleProfileModal()">Close</button>
-            </form>
-        </div>
+  <!-- Login Modal -->
+  <div id="login-modal" class="modal hidden">
+    <div class="modal-content">
+      <h3>User Login</h3>
+      <form id="login-form" onsubmit="validateLogin(); return false;">
+        <label>Your Name: <input type="text" id="login-name" required /></label><br />
+        <label>Phone Number: <input type="text" id="login-phone" required /></label><br />
+        <label>Email: <input type="email" id="login-email" required /></label><br />
+        <label>Employee ID: <input type="text" id="login-empid" required /></label><br />
+        <label>Batch: <input type="text" id="login-batch" required /></label><br />
+        <label>Department: <input type="text" id="login-dept" required /></label><br />
+        <label>Password: <input type="password" id="login-password" required /></label><br />
+        <button type="submit">Login</button>
+        
+      </form>
     </div>
+  </div>
 
-    <script src="script.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <!-- Profile Modal -->
+  <div id="profile-modal" class="modal hidden">
+    <div class="modal-content">
+      <h3>User Profile</h3>
+      <form id="profile-form" onsubmit="saveProfile(); return false;">
+        <label>Name: <input type="text" id="profile-name" /></label><br />
+        <label>Employee ID: <input type="text" id="profile-empid" /></label><br />
+        <label>Email: <input type="email" id="profile-email" /></label><br />
+        <label>Department: <input type="text" id="profile-dept" /></label><br />
+        <label>Profile Picture URL: <input type="text" id="profile-picurl" /></label><br />
+        <button type="submit">Save</button>
+        <button type="button" onclick="toggleProfileModal()">Close</button><br />
+        <button type="button" onclick="logout()">Logout</button>
+      </form>
+    </div>
+  </div>
 
+  <!-- LMS Dashboard View -->
+  <div id="main-dashboard" class="dashboard-container">
+    <aside class="sidebar">
+      <h2 id="sidebar-title">Batches</h2>
+      <ul id="sidebar-list"></ul>
+    </aside>
+    <aside class="right-panel">
+      <h2>Topics</h2>
+      <div id="topic-content"></div>
+    </aside>
+  </div>
+
+  <!-- Home Content -->
+  <div id="home-content" class="right-panel hidden">
+    <h2 style="padding: 14px; margin-left: -23%;">Dashboard Summary</h2>
+    <div id="batch-selector-container" style="margin-bottom: 10px;">
+  <label for="batch-selector"><strong>Select Batch:</strong></label>
+  <select id="batch-selector" onchange="onBatchChange()"></select>
+</div>
+
+    <div id="user-summary"></div>
+    <div id="score-summary"></div>
+    <div id="time-summary"></div>
+    <div id="leaderboard-section">Leaderboard</div>
+    <div id="incomplete-topics-summary"></div>
+    <div id="completion-summary"></div>
+    <button id="bt" onclick="downloadSummary()">Download Summary</button>
+  </div>
+
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </body>
 </html>
